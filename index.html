@@ -12,7 +12,16 @@
 
         //escena
         var scene = new THREE.Scene();
-        scene.background = new THREE.Color(0x2a3b4c)
+        scene.background = new THREE.Color(0x2a3b4c);   
+        scene.fog = new THREE.Fog(0x7645,0.1,8);  //efecto difuminado
+       
+
+       //carga una imagen para la texture
+        var loader = new THREE.TextureLoader();     //crea el objeto
+        loader.load("./1115160.png",function(texture){
+                scene.background = texture;
+        })
+
 
 
         //camera        campo de visión, relación de aspecto
@@ -30,16 +39,18 @@
         // el elemento 
         var geometry = new THREE.BoxGeometry();
         //material 
-        var material = new THREE.MeshBasicMaterial( { color: 0x00ff00,wireframe: true } );
+        var material = new THREE.MeshBasicMaterial( { color: 0x00ff00,/* wireframe: true  */ } ); //solo se ve la malla 
         //malla toma al objeto y le aplica un material 
         var cube = new THREE.Mesh( geometry, material );
         scene.add(cube);
 
         //de forma prederteminada todo inicio e la posicion (0,0,0)
         camera.position.z =5;
+        cube.position.y = -1;
 
         function animate() {                    //para dibujar en pantalla se necesita un bucle de renderizacion
 	        requestAnimationFrame( animate );
+            
             cube.rotation.x += 0.01;
             cube.rotation.y += 0.01;
 	        renderer.render( scene, camera );
@@ -48,6 +59,6 @@
         animate();
 
     </script>
-    <h1>ghola</h1>
+    <h1></h1>
 </body>
 </html>
