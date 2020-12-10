@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r123/three.js"></script>
+   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.js"></script> -->
+    <script>
+
+        //escena
+        var scene = new THREE.Scene();
+        scene.background = new THREE.Color(0x2a3b4c)
+
+
+        //camera        campo de visión, relación de aspecto
+        var camera = new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight);//Hay algunas cámaras diferentes se usara una PerspectiveCamera.
+
+
+        // render  
+
+        var renderer =  new THREE.WebGLRenderer();
+        renderer.setSize( window.innerWidth, window.innerHeight );
+        document.body.appendChild( renderer.domElement );
+
+
+        //elemento geometrico 
+        // el elemento 
+        var geometry = new THREE.BoxGeometry();
+        //material 
+        var material = new THREE.MeshBasicMaterial( { color: 0x00ff00,wireframe: true } );
+        //malla toma al objeto y le aplica un material 
+        var cube = new THREE.Mesh( geometry, material );
+        scene.add(cube);
+
+        //de forma prederteminada todo inicio e la posicion (0,0,0)
+        camera.position.z =5;
+
+        function animate() {                    //para dibujar en pantalla se necesita un bucle de renderizacion
+	        requestAnimationFrame( animate );
+            cube.rotation.x += 0.01;
+            cube.rotation.y += 0.01;
+	        renderer.render( scene, camera );
+        }
+
+        animate();
+
+    </script>
+    <h1>ghola</h1>
+</body>
+</html>
